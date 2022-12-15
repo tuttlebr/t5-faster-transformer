@@ -1,0 +1,88 @@
+networks:
+  transformer-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.25.4.0/24
+
+services:
+  faster-transformer:
+    build:
+      context: https://github.com/triton-inference-server/fastertransformer_backend.git#dev/t5_gptj_blog
+      dockerfile: docker/Dockerfile
+      args:
+        - TRITON_VERSION=22.08
+    image: faster-transformer
+    shm_size: 4gb
+    ulimits:
+      memlock: -1
+      stack: 67108864
+    runtime: nvidia
+    working_dir: /ft_workspace
+    volumes:
+      - type: bind
+        source: workspace
+        target: /ft_workspace
+    hostname: faster-transformer
+    entrypoint:
+      [
+        "./entrypoint.sh"
+      ]
+
+  faster-transformer-client:
+    build:
+      context: https://github.com/triton-inference-server/fastertransformer_backend.git#dev/t5_gptj_blog
+      dockerfile: docker/Dockerfile
+      args:
+        - TRITON_VERSION=22.08
+    image: faster-transformer
+    shm_size: 4gb
+    ulimits:
+      memlock: -1
+      stack: 67108864
+    runtime: nvidia
+    working_dir: /ft_workspace
+    ports:
+      - 8888:8888
+    volumes:
+      - type: bind
+        source: workspace
+        target: /ft_workspace
+    hostname: faster-transformer-client
+    networks:
+          transformer-network:
+            ipv4_address: 172.25.4.2
+    entrypoint:
+      [
+        "./client_entrypoint.sh"
+      ]
+
+  faster-transformer-server:
+    build:
+      context: https://github.com/triton-inference-server/fastertransformer_backend.git#dev/t5_gptj_blog
+      dockerfile: docker/Dockerfile
+      args:
+        - TRITON_VERSION=22.08
+    image: faster-transformer
+    shm_size: 8gb
+    ulimits:
+      memlock: -1
+      stack: 67108864
+    runtime: nvidia
+    working_dir: /ft_workspace
+    ports:
+      - 8000:8000
+      - 8001:8001
+      - 8002:8002
+    volumes:
+      - type: bind
+        source: workspace
+        target: /ft_workspace
+    hostname: faster-transformer-server
+    networks:
+          transformer-network:
+            ipv4_address: 172.25.4.4
+    entrypoint:
+      [
+        "./04_start_triton_inference_server.sh"
+      ]

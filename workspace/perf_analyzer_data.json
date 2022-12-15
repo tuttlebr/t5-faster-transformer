@@ -1,0 +1,28 @@
+{
+  "data": 
+    [
+        {
+            "input_ids":
+            {
+                "content": [30355, 15, 1566, 12, 2968, 10, 216, 3, 7, 210, 425, 223, 8, 5095, 11148, 11, 4061, 8, 689, 5, 1],
+                "shape": [21]
+            },
+            "sequence_length": 
+            {
+                "content": [21],
+                "shape": [1]
+            },
+            "max_output_len": 
+            {
+                "content": [128],
+                "shape": [1]
+            },
+            "runtime_top_k": 
+            {
+                "content": [1],
+                "shape": [1]
+            }
+        }
+    ]
+}
+
