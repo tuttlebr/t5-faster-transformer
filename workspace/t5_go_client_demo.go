@@ -4,12 +4,12 @@ import (
 	"bytes"
 	"context"
 	"encoding/binary"
+	"encoding/json"
 	"flag"
 	"fmt"
+	triton "github.com/triton-inference-server/client/src/grpc_generated/go/grpc-client"
 	"log"
 	"time"
-
-	triton "github.com/triton-inference-server/client/src/grpc_generated/go/grpc-client"
 
 	"google.golang.org/grpc"
 )
@@ -91,11 +91,9 @@ func ModelInferRequest(client triton.GRPCInferenceServiceClient, rawInput [][]by
 			Shape:    []int64{1, 21},
 		},
 		&triton.ModelInferRequest_InferInputTensor{
-			Name:       "sequence_length",
-			Datatype:   "UINT32",
-			Shape:      []int64{1, 1},
-			Parameters: map[string]*triton.InferParameter{},
-			Contents:   &triton.InferTensorContents{},
+			Name:     "sequence_length",
+			Datatype: "UINT32",
+			Shape:    []int64{1, 1},
 		},
 		&triton.ModelInferRequest_InferInputTensor{
 			Name:     "max_output_len",
@@ -229,8 +227,10 @@ func main() {
 	serverReadyResponse := ServerReadyRequest(client)
 	fmt.Printf("Triton Health - Ready: %v\n", serverReadyResponse.Ready)
 
+	fmt.Printf("Triton Metadata:\n")
 	modelMetadataResponse := ModelMetadataRequest(client, FLAGS.ModelName, "")
-	fmt.Println(modelMetadataResponse)
+	modelMetadataResponsePretty, _ := json.MarshalIndent(modelMetadataResponse, "", " ")
+	fmt.Println(string(modelMetadataResponsePretty))
 
 	inputData0 := []int32{30355, 15, 1566, 12, 2968, 10, 216, 3, 7, 210, 425, 223, 8, 5095, 11148, 11, 4061, 8, 689, 5, 1}
 	inputData1 := []int32{21}
@@ -248,7 +248,7 @@ func main() {
 
 	fmt.Println("\nChecking Inference Outputs\n--------------------------")
 	fmt.Println("\noutput_ids:")
-	fmt.Println(outputData0)
+	fmt.Println(outputData0[0:outputData1[0]])
 	fmt.Println("\nsequence_length:")
 	fmt.Println(outputData1)
 

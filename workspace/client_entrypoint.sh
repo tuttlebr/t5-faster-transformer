@@ -9,4 +9,4 @@ jupyter lab \
     --ServerApp.allow_root=True \
     --ServerApp.token='' \
     --ServerApp.password='' \
-    --Application.log_level='CRITICAL'
+    --no-browser
