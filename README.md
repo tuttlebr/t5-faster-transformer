@@ -14,6 +14,7 @@ workspace/01_clone_FasterTransformer_library.sh
 workspace/02_download_t5_weights.sh
 workspace/03_kernel_autotuning_t5.sh
 workspace/04_start_triton_inference_server.sh
+workspace/05_go_installer.sh && go run t5_go_client_demo.go
 ```
 
 1. Build the triton fastertransformer backend: `docker compose build`

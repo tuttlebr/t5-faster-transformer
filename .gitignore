@@ -4,6 +4,9 @@ workspace/fastertransformer_backend
 workspace/models
 workspace/t5-3b
 workspace/triton-model-store
+workspace/common
+workspace/core
+workspace/grpc-client
 gemm_config.in
 .ipynb_checkpoints/
 .Trash*/
