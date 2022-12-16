@@ -1,6 +1,6 @@
 # Deploying T5 with NVIDIA Triton Inference Server
 
-My working repo for following the [NVIDIA blog post](https://developer.nvidia.com/blog/deploying-gpt-j-and-t5-with-fastertransformer-and-triton-inference-server/) originally written by Denis Timonin, Bo Yang Hsueh, Dhruv Singal and Vinh Nguyen
+My working repo for following the [NVIDIA blog post](https://developer.nvidia.com/blog/deploying-gpt-j-and-t5-with-fastertransformer-and-triton-inference-server/) originally written by [Denis Timonin](https://developer.nvidia.com/blog/author/dtimonin/), [Bo Yang Hsueh](https://developer.nvidia.com/blog/author/bhsueh/), [Dhruv Singal](https://developer.nvidia.com/blog/author/dsingal/) and [Vinh Nguyen](https://developer.nvidia.com/blog/author/vinhn/)
 
 ![t5](https://developer-blogs.nvidia.com/wp-content/uploads/2022/07/image8.png)
 
