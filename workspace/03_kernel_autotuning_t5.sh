@@ -13,7 +13,7 @@ decoder_size_per_head=128
 decoder_inter_size=16384
 decoder_vocab_size=32128
 data_type=1
-tensor_para_size=1
+tensor_para_size=2
 is_fp16_compute_type=1
 is_append=1
 
@@ -28,7 +28,7 @@ python3 FasterTransformer/examples/pytorch/t5/utils/huggingface_t5_ckpt_convert.
         -i_g ${tensor_para_size} \
         -weight_data_type fp16
         
-CUDA_VISIBLE_DEVICES=0 ./FasterTransformer/build/bin/t5_gemm \
+./FasterTransformer/build/bin/t5_gemm \
     ${batch_size} \
     ${beam_width} \
     ${max_mem_seq_len} \
@@ -49,6 +49,7 @@ CUDA_VISIBLE_DEVICES=0 ./FasterTransformer/build/bin/t5_gemm \
 mkdir -p triton-model-store
 cp -r ./fastertransformer_backend/all_models/t5/ triton-model-store/
 
+chmod 777 triton-model-store/t5/fastertransformer/config.pbtxt
 printf "%s\n" \
 "" \
 "We have to open the copied TRITON config for T5 model triton-model-store/t5/fastertransformer/config.pbtxt." \
