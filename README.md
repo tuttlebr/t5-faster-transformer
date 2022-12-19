@@ -18,8 +18,8 @@ workspace/05_go_installer.sh && go run t5_go_client_demo.go
 ```
 
 1. Build the triton fastertransformer backend: `docker compose build`
-2. Compile the t5 model: `docker compose run faster-transformer`
-3. Modify the subsequent `config.pbtxt` file, executable `workspace/03_kernel_autotuning_t5.sh` will print out what you need to chhange.
+2. Compile the t5 model: `docker compose up faster-transformer`
+3. Modify the subsequent `config.pbtxt` file, executable `workspace/03_kernel_autotuning_t5.sh` will print out what you need to change.
 4. `docker compose up faster-transformer-server`
 5. `docker compose up faster-transformer-client`
 

@@ -7,9 +7,10 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
-	triton "github.com/triton-inference-server/client/src/grpc_generated/go/grpc-client"
 	"log"
 	"time"
+
+	triton "github.com/triton-inference-server/client/src/grpc_generated/go/grpc-client"
 
 	"google.golang.org/grpc"
 )

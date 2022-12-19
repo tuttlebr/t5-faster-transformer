@@ -40,7 +40,7 @@ services:
     ulimits:
       memlock: -1
       stack: 67108864
-    runtime: nvidia
+    # runtime: nvidia
     working_dir: /ft_workspace
     ports:
       - 8888:8888
