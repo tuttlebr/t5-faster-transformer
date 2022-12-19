@@ -11,9 +11,9 @@ services:
       context: https://github.com/triton-inference-server/fastertransformer_backend.git#dev/t5_gptj_blog
       dockerfile: docker/Dockerfile
       args:
-        - TRITON_VERSION=22.10
-    image: faster-transformer
-    shm_size: 4gb
+        - TRITON_VERSION=${TRITON_VERSION}
+    image: faster-transformer:${TRITON_VERSION}
+    shm_size: 8gb
     ulimits:
       memlock: -1
       stack: 67108864
@@ -34,8 +34,8 @@ services:
       context: https://github.com/triton-inference-server/fastertransformer_backend.git#dev/t5_gptj_blog
       dockerfile: docker/Dockerfile
       args:
-        - TRITON_VERSION=22.10
-    image: faster-transformer
+        - TRITON_VERSION=${TRITON_VERSION}
+    image: faster-transformer:${TRITON_VERSION}
     shm_size: 4gb
     ulimits:
       memlock: -1
@@ -62,8 +62,8 @@ services:
       context: https://github.com/triton-inference-server/fastertransformer_backend.git#dev/t5_gptj_blog
       dockerfile: docker/Dockerfile
       args:
-        - TRITON_VERSION=22.10
-    image: faster-transformer
+        - TRITON_VERSION=${TRITON_VERSION}
+    image: faster-transformer:${TRITON_VERSION}
     shm_size: 8gb
     ulimits:
       memlock: -1
