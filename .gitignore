@@ -11,3 +11,5 @@ gemm_config.in
 .ipynb_checkpoints/
 .Trash*/
 __pycache__/
+*.log
+ignore.*
