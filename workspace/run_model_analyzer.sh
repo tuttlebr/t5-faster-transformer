@@ -1,3 +1,3 @@
 #!/bin/bash
 
-model-analyzer profile
+model-analyzer profile -f sweep.yaml
