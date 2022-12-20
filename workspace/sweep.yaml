@@ -1,0 +1,9 @@
+model_repository: "/ft_workspace/triton-model-store/t5"
+override_output_model_repository: true
+profile_models:
+        fastertransformer:
+                model_config_parameters:
+                        instance_group:
+                                - kind: KIND_CPU
+perf_analyzer_flags:
+        input-data: /ft_workspace/perf_analyzer_data.json

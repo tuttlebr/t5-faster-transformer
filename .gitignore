@@ -7,6 +7,11 @@ workspace/triton-model-store
 workspace/common
 workspace/core
 workspace/grpc-client
+workspace/checkpoints
+workspace/output_model_repository
+workspace/plots
+workspace/reports
+workspace/results
 gemm_config.in
 .ipynb_checkpoints/
 .Trash*/

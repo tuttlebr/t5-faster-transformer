@@ -5,10 +5,7 @@ LOG_FILENAME="${LOG_FILENAME_TIMESTAMP}_tritonv${TRITON_VERSION}.log"
 
 /opt/tritonserver/bin/tritonserver \
     --model-repository=triton-model-store/t5/ \
-    --disable-auto-complete-config \
-    --model-control-mode=poll \
-    --repository-poll-secs=30 \
     --id="FasterTransformer-T5" \
-    --log-verbose=3 \
-    --log-file=${LOG_FILENAME}
+    --allow-metrics=true \
+    --allow-gpu-metrics=true
     
