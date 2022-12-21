@@ -12,6 +12,7 @@ workspace/output_model_repository
 workspace/plots
 workspace/reports
 workspace/results
+workspace/model_analyzer_results
 gemm_config.in
 .ipynb_checkpoints/
 .Trash*/
