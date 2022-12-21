@@ -1,9 +1,19 @@
 model_repository: "/ft_workspace/triton-model-store/t5"
 override_output_model_repository: true
+output_model_repository_path: "/ft_workspace/model_analyzer_results"
 profile_models:
-        fastertransformer:
-                model_config_parameters:
-                        instance_group:
-                                - kind: KIND_CPU
+  fastertransformer:
+    model_config_parameters:
+      instance_group:
+        - kind: KIND_CPU
+      dynamic_batching:
+        max_queue_delay_microseconds: 2000
+    parameters:
+      batch_sizes: 1, 16, 32, 64, 128
+      concurrency:
+        start: 2
+        stop: 16
+        step: 4
 perf_analyzer_flags:
-        input-data: /ft_workspace/perf_analyzer_data.json
+  input-data: /ft_workspace/perf_analyzer_data.json
+  percentile: 99

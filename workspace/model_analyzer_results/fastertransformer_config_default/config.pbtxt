@@ -1,0 +1,187 @@
+name: "fastertransformer_config_default"
+max_batch_size: 128
+input {
+  name: "input_ids"
+  data_type: TYPE_UINT32
+  dims: -1
+}
+input {
+  name: "sequence_length"
+  data_type: TYPE_UINT32
+  dims: 1
+  reshape {
+  }
+}
+input {
+  name: "runtime_top_k"
+  data_type: TYPE_UINT32
+  dims: 1
+  reshape {
+  }
+  optional: true
+}
+input {
+  name: "runtime_top_p"
+  data_type: TYPE_FP32
+  dims: 1
+  reshape {
+  }
+  optional: true
+}
+input {
+  name: "beam_search_diversity_rate"
+  data_type: TYPE_FP32
+  dims: 1
+  reshape {
+  }
+  optional: true
+}
+input {
+  name: "temperature"
+  data_type: TYPE_FP32
+  dims: 1
+  reshape {
+  }
+  optional: true
+}
+input {
+  name: "len_penalty"
+  data_type: TYPE_FP32
+  dims: 1
+  reshape {
+  }
+  optional: true
+}
+input {
+  name: "repetition_penalty"
+  data_type: TYPE_FP32
+  dims: 1
+  reshape {
+  }
+  optional: true
+}
+input {
+  name: "random_seed"
+  data_type: TYPE_INT32
+  dims: 1
+  reshape {
+  }
+  optional: true
+}
+input {
+  name: "is_return_log_probs"
+  data_type: TYPE_BOOL
+  dims: 1
+  reshape {
+  }
+  optional: true
+}
+input {
+  name: "max_output_len"
+  data_type: TYPE_UINT32
+  dims: 1
+  reshape {
+  }
+}
+input {
+  name: "beam_width"
+  data_type: TYPE_UINT32
+  dims: 1
+  reshape {
+  }
+  optional: true
+}
+input {
+  name: "start_id"
+  data_type: TYPE_UINT32
+  dims: 1
+  reshape {
+  }
+  optional: true
+}
+input {
+  name: "end_id"
+  data_type: TYPE_UINT32
+  dims: 1
+  reshape {
+  }
+  optional: true
+}
+input {
+  name: "bad_words_list"
+  data_type: TYPE_INT32
+  dims: 2
+  dims: -1
+  optional: true
+}
+input {
+  name: "stop_words_list"
+  data_type: TYPE_INT32
+  dims: 2
+  dims: -1
+  optional: true
+}
+output {
+  name: "output_ids"
+  data_type: TYPE_UINT32
+  dims: -1
+  dims: -1
+}
+output {
+  name: "sequence_length"
+  data_type: TYPE_UINT32
+  dims: -1
+}
+output {
+  name: "cum_log_probs"
+  data_type: TYPE_FP32
+  dims: -1
+}
+output {
+  name: "output_log_probs"
+  data_type: TYPE_FP32
+  dims: -1
+  dims: -1
+}
+instance_group {
+  count: 1
+  kind: KIND_CPU
+}
+default_model_filename: "t5"
+parameters {
+  key: "enable_custom_all_reduce"
+  value {
+    string_value: "0"
+  }
+}
+parameters {
+  key: "is_half"
+  value {
+    string_value: "1"
+  }
+}
+parameters {
+  key: "model_checkpoint_path"
+  value {
+    string_value: "/ft_workspace/models/t5-3b/2-gpu/"
+  }
+}
+parameters {
+  key: "model_type"
+  value {
+    string_value: "T5"
+  }
+}
+parameters {
+  key: "pipeline_para_size"
+  value {
+    string_value: "1"
+  }
+}
+parameters {
+  key: "tensor_para_size"
+  value {
+    string_value: "2"
+  }
+}
+backend: "fastertransformer"
