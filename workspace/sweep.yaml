@@ -1,6 +1,7 @@
 model_repository: "/ft_workspace/triton-model-store/t5"
 override_output_model_repository: true
 output_model_repository_path: "/ft_workspace/model_analyzer_results"
+export_path: "/ft_workspace/model_analyzer_results"
 profile_models:
   fastertransformer:
     model_config_parameters:
@@ -9,7 +10,10 @@ profile_models:
       dynamic_batching:
         max_queue_delay_microseconds: 2000
     parameters:
-      batch_sizes: 1, 16, 32, 64, 128
+      batch_sizes:
+        start: 1
+        stop: 128
+        step: 4
       concurrency:
         start: 2
         stop: 16
